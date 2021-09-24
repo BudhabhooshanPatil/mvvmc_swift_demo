@@ -42,5 +42,6 @@ extension DashboardCoordinator: DashboardViewModelDelegate {
   func logout() {
     // logout
     // show login
+    // todo
   }
 }
