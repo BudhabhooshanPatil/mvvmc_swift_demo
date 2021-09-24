@@ -14,17 +14,16 @@ protocol LoginCoordinatorDelegate: AnyObject {
 // handles the responsibility if LoginViewController
 final class LoginCoordinator: BaseCoordinator {
   
-  var navigationcontroller: UINavigationController?
-  weak var delegate: LoginCoordinatorDelegate?
+  private let navigationcontroller: UINavigationController
+  public weak var delegate: LoginCoordinatorDelegate?
   
   init(navigationcontroller:UINavigationController) {
     self.navigationcontroller = navigationcontroller
   }
   
   override func start() {
-    
-    if let navigationController = self.navigationcontroller, let controller = self.loginController {
-      navigationController.setViewControllers([controller], animated: false)
+    if let controller = self.loginController {
+      self.navigationcontroller.setViewControllers([controller], animated: false)
     }
   }
   
@@ -37,17 +36,6 @@ final class LoginCoordinator: BaseCoordinator {
     controller?.viewModel = viewModel
     return controller
   }()
-  
-  lazy var resetPasswordController: ResetPasswordViewController? = {
-    let controller = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "ResetPasswordViewController") as? ResetPasswordViewController
-    return controller
-  }()
-  
-  lazy var registerController: RegisterViewController? = {
-    let controller = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "RegisterViewController") as? RegisterViewController
-    return controller
-  }()
-  
 }
 
 extension LoginCoordinator: LoginViewModelCoordinatorDelegate {
@@ -58,18 +46,5 @@ extension LoginCoordinator: LoginViewModelCoordinatorDelegate {
   
   func loginFailed(error: NSError) {
     self.loginController?.displayAlertMessage(error: error)
-  }
-  
-  func didTapCreateAccount() {
-    
-    if let navigationController = self.navigationcontroller, let controller = self.registerController {
-      navigationController.pushViewController(controller, animated: true)
-    }
-  }
-  
-  func didTapForgotPassword() {
-    if let navigationController = self.navigationcontroller, let controller = self.resetPasswordController {
-      navigationController.pushViewController(controller, animated: true)
-    }
   }
 }

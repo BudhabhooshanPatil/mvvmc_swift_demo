@@ -20,11 +20,11 @@ class LoginViewController: UIViewController {
   }
   
   @IBAction func didTapForgotPasswordButton(_ sender: UIButton) {
-    self.viewModel?.onTapForgotPassword()
+//    self.viewModel?.onTapForgotPassword()
   }
   
   @IBAction func didTapRegisterButton(_ sender: UIButton) {
-    self.viewModel?.onTapCreateAccount()
+//    self.viewModel?.onTapCreateAccount()
   }
   
   public func displayAlertMessage(error: NSError) {

@@ -10,8 +10,6 @@ import Foundation
 public protocol LoginViewModelCoordinatorDelegate: AnyObject {
   func loginDidSuccess(with user: User)
   func loginFailed(error: NSError)
-  func didTapCreateAccount()
-  func didTapForgotPassword()
 }
 
 public class LoginViewModel: NSObject {
@@ -28,15 +26,5 @@ public class LoginViewModel: NSObject {
     } else {
       self.coordinatorDelegate?.loginFailed(error: NSError(domain: "", code: 401, userInfo: nil))
     }
-  }
-  
-  // create new account
-  public func onTapCreateAccount() {
-    self.coordinatorDelegate?.didTapCreateAccount()
-  }
-  
-  // forgot password
-  public func onTapForgotPassword() {
-    self.coordinatorDelegate?.didTapForgotPassword()
   }
 }
