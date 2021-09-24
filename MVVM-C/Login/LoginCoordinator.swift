@@ -8,14 +8,27 @@
 import UIKit
 
 protocol LoginCoordinatorDelegate: AnyObject {
-  func didFinishLoginCordinator(coordinator: Coordinator)
+  func didFinishLoginCordinator(coordinator: Coordinator, with user:User)
 }
 
-class LoginCoordinator: Coordinator {
+// handles the responsibility if LoginViewController
+final class LoginCoordinator: BaseCoordinator {
   
   var navigationcontroller: UINavigationController?
   weak var delegate: LoginCoordinatorDelegate?
   
+  init(navigationcontroller:UINavigationController) {
+    self.navigationcontroller = navigationcontroller
+  }
+  
+  override func start() {
+    
+    if let navigationController = self.navigationcontroller, let controller = self.loginController {
+      navigationController.setViewControllers([controller], animated: false)
+    }
+  }
+  
+  // init login-controller
   lazy var loginController: LoginViewController? = {
     let viewModel = LoginViewModel()
     viewModel.coordinatorDelegate = self
@@ -35,24 +48,12 @@ class LoginCoordinator: Coordinator {
     return controller
   }()
   
-  init(navigationcontroller:UINavigationController) {
-    self.navigationcontroller = navigationcontroller
-  }
-  
-  var childCoordinators: [Coordinator] = []
-  
-  func start() {
-    
-    if let navigationController = self.navigationcontroller, let controller = self.loginController {
-      navigationController.setViewControllers([controller], animated: false)
-    }
-  }
 }
 
 extension LoginCoordinator: LoginViewModelCoordinatorDelegate {
- 
-  func loginDidSuccess() {
-    self.delegate?.didFinishLoginCordinator(coordinator: self)
+  
+  func loginDidSuccess(with user: User) {
+    self.delegate?.didFinishLoginCordinator(coordinator: self, with: user)
   }
   
   func loginFailed(error: NSError) {

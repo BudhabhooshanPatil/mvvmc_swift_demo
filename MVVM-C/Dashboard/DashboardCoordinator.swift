@@ -11,26 +11,36 @@ protocol DashboardCoordinatorDelegate: AnyObject {
   func didFinishDashboardCordinator(coordinator: Coordinator)
 }
 
-class DashboardCoordinator: Coordinator {
+class DashboardCoordinator: BaseCoordinator {
   
-  var navigationcontroller: UINavigationController?
-  weak var delegate: DashboardCoordinatorDelegate?
+  private let navigationcontroller: UINavigationController
+  public weak var delegate: DashboardCoordinatorDelegate?
+  private let user: User
   
-  lazy var dashboardController: DashboardViewController? = {
-    let controller = UIStoryboard(name: "Dashboard", bundle: nil).instantiateViewController(withIdentifier: "DashboardViewController") as? DashboardViewController
-    return controller
-  }()
-  
-  init(navigationcontroller:UINavigationController) {
+  init(navigationcontroller:UINavigationController, with user: User) {
     self.navigationcontroller = navigationcontroller
+    self.user = user
   }
   
-  var childCoordinators: [Coordinator] = []
-  
-  func start() {
-    
-    if let navigationController = self.navigationcontroller, let controller = self.dashboardController{
-      navigationController.setViewControllers([controller], animated: false)
+  override func start() {
+    if let controller = self.dashboardController {
+      self.navigationcontroller.setViewControllers([controller], animated: false)
     }
+  }
+  
+  // init dashboard-controller with viewmodel dependency injection
+  lazy var dashboardController: DashboardViewController? = {
+    let controller = UIStoryboard(name: "Dashboard", bundle: nil).instantiateViewController(withIdentifier: "DashboardViewController") as? DashboardViewController
+    let viewModel = DashboardViewModel(appUser: self.user)
+    controller?.viewModel = viewModel
+    controller?.viewModel?.coordinatorDelegate = self
+    return controller
+  }()
+}
+
+extension DashboardCoordinator: DashboardViewModelDelegate {
+  func logout() {
+    // logout
+    // show login
   }
 }

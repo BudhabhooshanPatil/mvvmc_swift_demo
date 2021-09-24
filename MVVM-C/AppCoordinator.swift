@@ -15,7 +15,7 @@ import UIKit
  All other coordinators in the application will be children of this coordinator.
  */
 
-class AppCoordinator: Coordinator {
+class AppCoordinator: BaseCoordinator {
   
   let LOGIN_STATUS = true
   
@@ -25,25 +25,23 @@ class AppCoordinator: Coordinator {
   lazy var rootViewController: UINavigationController = {
     return UINavigationController()
   }()
-  
-  var childCoordinators: [Coordinator] = []
-  
+    
   //  the AppCoordinator it must own the window.
   init(window: UIWindow?) {
     self.window = window
   }
   
-  func start() {
+  override func start() {
     guard let window = window else { return }
     window.rootViewController = rootViewController
     window.makeKeyAndVisible()
     
     if LOGIN_STATUS {
-      // login coordinator
       loginFlow()
     } else {
-      // list coordinator
-      dashboardFlow()
+      // user from local storage, as login is complete
+      let user = User(name: "admin")
+      dashboardFlow(with: user)
     }
   }
   
@@ -54,8 +52,8 @@ class AppCoordinator: Coordinator {
     loginCoordinator.start()
   }
   
-  private func dashboardFlow() {
-    let dashboardCoordinator = DashboardCoordinator(navigationcontroller: self.rootViewController)
+  private func dashboardFlow(with user: User) {
+    let dashboardCoordinator = DashboardCoordinator(navigationcontroller: self.rootViewController, with: user)
     dashboardCoordinator.delegate = self
     store(coordinator: dashboardCoordinator)
     dashboardCoordinator.start()
@@ -64,9 +62,10 @@ class AppCoordinator: Coordinator {
 }
 
 extension AppCoordinator: LoginCoordinatorDelegate {
-  func didFinishLoginCordinator(coordinator: Coordinator) {
+  
+  func didFinishLoginCordinator(coordinator: Coordinator, with user: User) {
     self.free(coordinator: coordinator)
-    self.dashboardFlow()
+    self.dashboardFlow(with: user)
   }
 }
 extension AppCoordinator: DashboardCoordinatorDelegate {

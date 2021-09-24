@@ -13,7 +13,7 @@ import Foundation
  Coordinator do the same with its children.
  */
 protocol Coordinator : AnyObject {
-  var childCoordinators : [Coordinator] { get set }
+  var childCoordinators: [Coordinator] { get set }
   func start()
 }
 /**
@@ -21,7 +21,7 @@ protocol Coordinator : AnyObject {
  (i.e.: user navigated back, view has been dismissed, etc).
  */
 extension Coordinator {
-  
+    
   func store(coordinator: Coordinator) {
     childCoordinators.append(coordinator)
   }

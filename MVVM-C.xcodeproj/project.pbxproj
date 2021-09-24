@@ -23,6 +23,9 @@
 		FA5BC08E26B4AB7D0093C022 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BC08D26B4AB7D0093C022 /* LoginCoordinator.swift */; };
 		FA5BC09026B4AD130093C022 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BC08F26B4AD130093C022 /* LoginViewController.swift */; };
 		FA5BC09226B4B3620093C022 /* DashboardCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5BC09126B4B3620093C022 /* DashboardCoordinator.swift */; };
+		FA76CCD326FE3F7B00E59686 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA76CCD226FE3F7B00E59686 /* BaseCoordinator.swift */; };
+		FA76CCD526FE432700E59686 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA76CCD426FE432700E59686 /* AppUser.swift */; };
+		FA76CCD726FE44A400E59686 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA76CCD626FE44A400E59686 /* DashboardViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		FA5BC08D26B4AB7D0093C022 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		FA5BC08F26B4AD130093C022 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		FA5BC09126B4B3620093C022 /* DashboardCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCoordinator.swift; sourceTree = "<group>"; };
+		FA76CCD226FE3F7B00E59686 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
+		FA76CCD426FE432700E59686 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		FA76CCD626FE44A400E59686 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +83,7 @@
 				FA5BC09126B4B3620093C022 /* DashboardCoordinator.swift */,
 				FA3E8AEC26C8EEDF00E22011 /* DashboardViewController.swift */,
 				FA3E8AEE26C8EEF800E22011 /* Dashboard.storyboard */,
+				FA76CCD626FE44A400E59686 /* DashboardViewModel.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -109,6 +116,8 @@
 				FA5BC08B26B4A7290093C022 /* AppCoordinator.swift */,
 				FA3E8AE726C7ED7C00E22011 /* Login */,
 				FA3E8AF026C8F0C100E22011 /* Dashboard */,
+				FA76CCD226FE3F7B00E59686 /* BaseCoordinator.swift */,
+				FA76CCD426FE432700E59686 /* AppUser.swift */,
 			);
 			path = "MVVM-C";
 			sourceTree = "<group>";
@@ -184,10 +193,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA76CCD526FE432700E59686 /* AppUser.swift in Sources */,
 				FA3E8AE426C7E6B900E22011 /* LoginContentView.swift in Sources */,
 				FA3E8AE926C8E95D00E22011 /* RegisterViewController.swift in Sources */,
+				FA76CCD326FE3F7B00E59686 /* BaseCoordinator.swift in Sources */,
 				FA5BC09026B4AD130093C022 /* LoginViewController.swift in Sources */,
 				FA3E8AEB26C8E96C00E22011 /* ResetPasswordViewController.swift in Sources */,
+				FA76CCD726FE44A400E59686 /* DashboardViewModel.swift in Sources */,
 				FA5BC08E26B4AB7D0093C022 /* LoginCoordinator.swift in Sources */,
 				FA5BC08A26B4A5F10093C022 /* Coordinator.swift in Sources */,
 				FA5BC08C26B4A7290093C022 /* AppCoordinator.swift in Sources */,

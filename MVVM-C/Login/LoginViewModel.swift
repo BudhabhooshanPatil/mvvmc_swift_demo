@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol LoginViewModelCoordinatorDelegate: AnyObject {
-  func loginDidSuccess()
+  func loginDidSuccess(with user: User)
   func loginFailed(error: NSError)
   func didTapCreateAccount()
   func didTapForgotPassword()
@@ -24,7 +24,7 @@ public class LoginViewModel: NSObject {
     
     // REST awesome API here
     if login_success {
-      self.coordinatorDelegate?.loginDidSuccess()
+      self.coordinatorDelegate?.loginDidSuccess(with: User(name: "admin"))
     } else {
       self.coordinatorDelegate?.loginFailed(error: NSError(domain: "", code: 401, userInfo: nil))
     }
