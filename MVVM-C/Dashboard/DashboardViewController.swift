@@ -15,6 +15,21 @@ class DashboardViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     self.userLabel.text = self.viewModel?.appuser.name
+    self.rightNavigationBar()
   }
   
+  private func rightNavigationBar() {
+    self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout",
+                                                             style: .plain,
+                                                             target: self,
+                                                             action: #selector(logoutUser))
+  }
+  
+  @objc func logoutUser() {
+    self.viewModel?.deleteDataAndLogout()
+  }
+  
+  deinit {
+    print(#function , NSStringFromClass(DashboardViewController.self))
+  }
 }

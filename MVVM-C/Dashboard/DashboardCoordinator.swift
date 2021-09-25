@@ -38,10 +38,8 @@ class DashboardCoordinator: BaseCoordinator {
   }()
 }
 
-extension DashboardCoordinator: DashboardViewModelDelegate {
+extension DashboardCoordinator: DashboardViewModeCoordinatorlDelegate {
   func logout() {
-    // logout
-    // show login
-    // todo
+    self.delegate?.didFinishDashboardCordinator(coordinator: self)
   }
 }

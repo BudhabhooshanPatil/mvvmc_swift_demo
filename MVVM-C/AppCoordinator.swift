@@ -71,5 +71,6 @@ extension AppCoordinator: LoginCoordinatorDelegate {
 extension AppCoordinator: DashboardCoordinatorDelegate {
   func didFinishDashboardCordinator(coordinator: Coordinator) {
     self.free(coordinator: coordinator)
+    self.loginFlow()
   }
 }

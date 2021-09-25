@@ -11,7 +11,7 @@ protocol LoginCoordinatorDelegate: AnyObject {
   func didFinishLoginCordinator(coordinator: Coordinator, with user:User)
 }
 
-// handles the responsibility if LoginViewController
+/// LoginCoordinator handles the responsibility if naviagtion in login-module
 final class LoginCoordinator: BaseCoordinator {
   
   private let navigationcontroller: UINavigationController
@@ -36,6 +36,18 @@ final class LoginCoordinator: BaseCoordinator {
     controller?.viewModel = viewModel
     return controller
   }()
+  
+  // init reset-password controller
+  lazy var resetPasswordController: ResetPasswordViewController? = {
+    let controller = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "ResetPasswordViewController") as? ResetPasswordViewController
+    return controller
+  }()
+  
+  // init register-controller
+  lazy var registerController: RegisterViewController? = {
+    let controller = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "RegisterViewController") as? RegisterViewController
+    return controller
+  }()
 }
 
 extension LoginCoordinator: LoginViewModelCoordinatorDelegate {
@@ -46,5 +58,18 @@ extension LoginCoordinator: LoginViewModelCoordinatorDelegate {
   
   func loginFailed(error: NSError) {
     self.loginController?.displayAlertMessage(error: error)
+  }
+  
+  func didTapCreateAccount() {
+    
+    if let controller = self.registerController {
+      self.navigationcontroller.pushViewController(controller, animated: true)
+    }
+  }
+  
+  func didTapForgotPassword() {
+    if let controller = self.resetPasswordController {
+      self.navigationcontroller.pushViewController(controller, animated: true)
+    }
   }
 }

@@ -114,10 +114,10 @@
 				FA5BC08326B4A5750093C022 /* Info.plist */,
 				FA5BC08926B4A5F10093C022 /* Coordinator.swift */,
 				FA5BC08B26B4A7290093C022 /* AppCoordinator.swift */,
-				FA3E8AE726C7ED7C00E22011 /* Login */,
-				FA3E8AF026C8F0C100E22011 /* Dashboard */,
 				FA76CCD226FE3F7B00E59686 /* BaseCoordinator.swift */,
 				FA76CCD426FE432700E59686 /* AppUser.swift */,
+				FA3E8AE726C7ED7C00E22011 /* Login */,
+				FA3E8AF026C8F0C100E22011 /* Dashboard */,
 			);
 			path = "MVVM-C";
 			sourceTree = "<group>";

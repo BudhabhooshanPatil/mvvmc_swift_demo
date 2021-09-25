@@ -7,13 +7,13 @@
 
 import Foundation
 
-public protocol DashboardViewModelDelegate: AnyObject {
+public protocol DashboardViewModeCoordinatorlDelegate: AnyObject {
   func logout()
 }
 
 public class DashboardViewModel: NSObject {
   public let appuser: User
-  public weak var coordinatorDelegate: DashboardViewModelDelegate?
+  public weak var coordinatorDelegate: DashboardViewModeCoordinatorlDelegate?
   public init(appUser: User) {
     self.appuser = appUser
   }
